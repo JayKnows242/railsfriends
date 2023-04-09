@@ -1,0 +1,54 @@
+<div class="card">
+  <div class="card-header">
+   <%= form_with(model: friend) do |form| %>
+  <% if friend.errors.any? %>
+    <div style="color: red">
+      <h4><%= pluralize(friend.errors.count, "error") %> prohibited this friend from being saved:</h4>
+
+      <ul>
+        <% friend.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div >
+    <% form.label :first_name, style: "display: block" %>
+    <%= form.text_field :first_name, class:"form-control", placeholder:"First Name" %>
+  </div>
+<br/>
+  <div >
+    <% form.label :last_name, style: "display: block" %>
+    <%= form.text_field :last_name, class:"form-control", placeholder:"Last Name" %>
+  </div>
+<br/>
+  <div >
+    <% form.label :email, style: "display: block" %>
+    <%= form.text_field :email, class:"form-control", placeholder:"Email"  %>
+  </div>
+<br/>
+  <div >
+    <% form.label :phone, style: "display: block" %>
+    <%= form.text_field :phone, class:"form-control", placeholder:"Phone Number"  %>
+  </div>
+<br/>
+  <div >
+    <% form.label :twitter, style: "display: block" %>
+    <%= form.text_field :twitter, class:"form-control", placeholder:"Twitter Handle"  %>
+  </div>
+<br>
+
+<div >
+    <% form.label :user_id, style: "display: block" %>
+    <%= form.number_field :user_id,id: :friend_user_id, class:"form-control", value: current_user.id, type: :hidden if current_user %>
+  </div>
+
+<br/>
+  <div>
+    <%= form.submit class:'btn btn-success' %>
+  </div>
+<% end %>
+
+  </div>
+</div>
